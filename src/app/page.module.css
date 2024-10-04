@@ -20,14 +20,6 @@
   }
 }
 
-@media (max-width:888px){
-  .main{
-    min-height: 95dvh;
-    padding-top: 45px;
-    box-sizing: border-box;
-  }
-}
-
 @media (prefers-color-scheme: dark) {
   .logo {
     filter: invert();

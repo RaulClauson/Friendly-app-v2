@@ -14,14 +14,19 @@
 }
 .Friendly_Input_dentro{
     width: 100%;
-    height: auto;
     padding: 0px 30px;
     box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     flex-shrink: 0;
     pointer-events: none !important;
+
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end; /* Keep messages at the bottom */
+    overflow-y: auto;
+    max-height: calc(100vh - 150px); /* Restrict max height */
+    background: linear-gradient(180deg, rgba(241, 241, 241, 0) 0%, #f1f1f17e 100%);
 }
 .Friendly_Input_dentro > * {
     pointer-events: auto;
@@ -141,22 +146,49 @@
 /* ============================BOX CHAT============================ */
 
 .box_chat_messages{
-    width: clamp(0px, 1028px, 100%);
-    padding: 0px 1.3vw;
-    height: 100%;
-    height: -webkit-fill-available;
-    overflow: auto;
-    box-sizing: border-box;
-    overflow-x: hidden;
-    pointer-events: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    overflow: hidden;
-    margin-bottom: 10px;
-    pointer-events: none !important;
+  width: clamp(0px, 1028px, 100%);
+  padding: 0px 1.3vw;
+  height: calc(100vh - 150px); /* Adjust based on viewport */
+  display: flex;
+  flex-direction: column-reverse; /* Reverse the column */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Hide horizontal overflow */
+  box-sizing: border-box;
+  scroll-behavior: smooth; /* Smooth scrolling for new messages */
+  pointer-events: none !important;
+}
+.box_chat_messages > * {
+  pointer-events: auto;
 }
 
+/* -------------MUDAR O STYLE DO SCROLLBAR---------------- */
+  
+.box_chat_messages::-webkit-scrollbar {
+  width: 0px;               /* width of the entire scrollbar */
+}
+
+.box_chat_messages::-webkit-scrollbar-track {
+  background: #f1f1f1;        /* color of the tracking area */
+  border-left: 1px solid #DDDFE3;
+}
+
+.box_chat_messages::-webkit-scrollbar-thumb {
+  background-color: #C4C7D0;    /* color of the scroll thumb */
+}
+
+.box_chat_messages::-webkit-scrollbar-thumb:hover {
+  background-color: #00113A;
+}
+
+
+.box_chat_messages_dentro{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Align messages to the bottom */
+  min-height: 100%; /* Ensures content starts at the bottom */
+  gap: 10px; /* Add spacing between messages */
+  pointer-events: auto;
+}
 
 
 .message {
@@ -178,7 +210,6 @@
     text-align: left;
     margin: 0;
      
-    background: #f1f1f1;
     color: rgba(0, 0, 0, 0.7);
     background: rgba(255, 255, 255);
     border-radius: 30px 30px 10px 30px;
@@ -223,6 +254,7 @@
     display: flex;
     justify-content: flex-end;
     gap: 6px;
+    flex: none;
     margin-bottom: 20px;
     -webkit-animation: slide-in-blurred-bottom 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
     animation: slide-in-blurred-bottom 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
@@ -233,9 +265,10 @@
     display: flex;
     justify-content: flex-start;
     gap: 6px;
+    flex: none;
     margin-bottom: 20px;
-    -webkit-animation: slide-in-blurred-bottom 1s 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
-    animation: slide-in-blurred-bottom 1s 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+    -webkit-animation: slide-in-blurred-bottom 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+    animation: slide-in-blurred-bottom 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
   }
   
   @-webkit-keyframes slide-in-blurred-bottom {
